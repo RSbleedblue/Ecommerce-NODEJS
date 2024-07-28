@@ -6,5 +6,6 @@ const BlogController = new blogController;
 
 blogRoutes.post("/create", (req,res) => BlogController.createBlog(req,res));
 blogRoutes.get("/getAllBlogs", (req,res) => BlogController.getAll(req,res));
-
+blogRoutes.post("/likeBlog", (req,res) => BlogController.likePost(req,res));
+blogRoutes.post("/comment", (req,res) => BlogController.addComment(req,res));
 export default blogRoutes;

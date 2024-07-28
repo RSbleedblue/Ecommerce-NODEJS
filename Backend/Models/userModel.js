@@ -14,13 +14,26 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
-        match: [/^\S+@\S+\.\S+$/, 'Please enter a valid email address']
     },
-    blogs : [{
-        type : mongoose.Schema.Types.ObjectId,
-        ref : 'blog',
+    address: {
+        type: String,
+    },
+    wishlist: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product',
+    }],
+    cart: [{
+        productID: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Product',
+            required: true,
+        },
+        quantity: {
+            type: Number,
+            required: true,
+        }
     }]
-});
+}, { timestamps: true });
 
 userSchema.pre("save", async function (next) {
     if (this.isModified("password") || this.isNew) {
